@@ -6,7 +6,7 @@
 // ——— Canvas и экран ———
 export const VW = 400;  // виртуальная ширина
 export const VH = 600;  // виртуальная высота
-export const CANVAS_HEIGHT_PERCENT = 0.5;  // canvas = 50% высоты окна (вебвью может быть половиной экрана)
+export const CANVAS_HEIGHT_PERCENT = 1;  // canvas на всю высоту экрана
 export const MIN_WIDTH = 320;
 
 // ——— Физика ———
