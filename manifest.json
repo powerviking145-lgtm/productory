@@ -1,0 +1,18 @@
+{
+  "name": "Курьер-раннер",
+  "short_name": "Курьер",
+  "description": "Мобильная пиксельная игра — курьер на самокате",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><rect width='128' height='128' fill='%2300BFFF'/><text x='64' y='80' font-size='60' text-anchor='middle' fill='%23333'>🛴</text></svg>",
+      "sizes": "128x128",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
