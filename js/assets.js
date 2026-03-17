@@ -1,7 +1,8 @@
 /**
- * assets.js — загрузка картинок курьера и логотипа компании.
- * Путь от корня сайта: img/courier.png, img/logo.png
- * Если файлов нет — игра рисует пиксельную графику кодом.
+ * assets.js — загрузка картинок курьера и логотипа.
+ * Пеший: img/courier_walk_1.png, img/courier_walk_2.png
+ * Велосипед: img/courier.png
+ * Логотип: img/logo.png
  */
 
 const BASE = (() => {
@@ -9,17 +10,25 @@ const BASE = (() => {
   const last = p.lastIndexOf('/');
   return last <= 0 ? '' : p.slice(0, last);
 })();
-const COURIER_PATH = (BASE ? BASE + '/' : '/') + 'img/courier.png';
-const LOGO_PATH = (BASE ? BASE + '/' : '/') + 'img/logo.png';
+const P = (BASE ? BASE + '/' : '/') + 'img/';
 
+export const imgCourierWalk1 = new Image();
+export const imgCourierWalk2 = new Image();
 export const imgCourier = new Image();
 export const imgLogo = new Image();
 
-imgCourier.src = COURIER_PATH;
-imgLogo.src = LOGO_PATH;
+imgCourierWalk1.src = P + 'courier_walk_1.png';
+imgCourierWalk2.src = P + 'courier_walk_2.png';
+imgCourier.src = P + 'courier.png';
+imgLogo.src = P + 'logo.png';
 
 export function isCourierLoaded() {
   return imgCourier.complete && imgCourier.naturalWidth > 0;
+}
+
+export function isCourierWalkLoaded() {
+  return imgCourierWalk1.complete && imgCourierWalk1.naturalWidth > 0 &&
+         imgCourierWalk2.complete && imgCourierWalk2.naturalWidth > 0;
 }
 
 export function isLogoLoaded() {

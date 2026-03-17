@@ -84,9 +84,20 @@ body {
 }
 
 .btn-claim {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   background: linear-gradient(135deg, #FF6B6B 0%, #9B59B6 100%);
   color: #FFFFFF;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-claim-logo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .btn-claim:disabled {

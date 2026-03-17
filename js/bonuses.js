@@ -98,13 +98,14 @@ export function trySpawn() {
 }
 
 /**
- * Обновление: движение влево, деактивация за экраном.
+ * Обновление: движение влево (delta time для одинаковой скорости на 30/60 FPS).
+ * @param {number} dt — множитель, 1 при 60 FPS
  */
-export function update() {
+export function update(dt = 1) {
   pool.forEach((b) => {
     if (!b.active) return;
-    b.x -= speed;
-    b.bobPhase += BONUS_BOB_SPEED;
+    b.x -= speed * dt;
+    b.bobPhase += BONUS_BOB_SPEED * dt;
     if (b.x + BONUS_SIZE < 0) b.active = false;
   });
 }

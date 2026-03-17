@@ -15,10 +15,10 @@ export const JUMP_FORCE = -13;
 export const GROUND_Y = 500;
 export const PLAYER_X = 60;  // 15% от 400 ≈ 60
 
-// ——— Скорость ———
+// ——— Скорость (рост замедлен, чтобы к 1000 м и после минуты игры было играбельно) ———
 export const SPEED_INIT = 1.8;
-export const SPEED_MAX = 10;
-export const SPEED_INCREMENT = 0.0005;
+export const SPEED_MAX = 7;
+export const SPEED_INCREMENT = 0.00025;  // было 0.0005 — рост в 2 раза медленнее
 
 // ——— Препятствия ———
 export const OBSTACLE_GAP_MIN = 720;

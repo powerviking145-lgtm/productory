@@ -4,6 +4,7 @@
  */
 
 const btnClaim = document.getElementById('btnClaim');
+const btnClaimText = document.getElementById('btnClaimText');
 const container = document.getElementById('gameOverButtons');
 
 /**
@@ -33,45 +34,52 @@ export function hideButtons() {
 }
 
 /**
- * Установить текст кнопки "Забрать" и сбросить состояние.
- * @param {string} text — например "Забрать 25 ⭐"
+ * Установить текст кнопки "Забрать N баллов" (N — награда за раунд).
+ * @param {string} text — например "Забрать 7 баллов" или число для форматирования
  */
 export function setClaimText(text) {
-  if (!btnClaim) return;
-  btnClaim.textContent = text;
-  btnClaim.disabled = false;
-  btnClaim.classList.remove('success', 'error');
+  const str = typeof text === 'number' ? 'Забрать ' + text + ' баллов' : text;
+  if (btnClaimText) btnClaimText.textContent = str;
+  else if (btnClaim) btnClaim.textContent = str;
+  if (btnClaim) {
+    btnClaim.disabled = false;
+    btnClaim.classList.remove('success', 'error');
+  }
 }
 
 /**
  * Состояние: отправка.
  */
 export function setClaimSending() {
-  if (!btnClaim) return;
-  btnClaim.textContent = 'Отправка...';
-  btnClaim.disabled = true;
+  if (btnClaimText) btnClaimText.textContent = 'Отправка...';
+  else if (btnClaim) btnClaim.textContent = 'Отправка...';
+  if (btnClaim) btnClaim.disabled = true;
 }
 
 /**
  * Состояние: успех.
  */
 export function setClaimSuccess() {
-  if (!btnClaim) return;
-  btnClaim.textContent = 'Баллы начислены! ✓';
-  btnClaim.disabled = true;
-  btnClaim.classList.add('success');
-  btnClaim.classList.remove('error');
+  if (btnClaimText) btnClaimText.textContent = 'Баллы начислены! ✓';
+  else if (btnClaim) btnClaim.textContent = 'Баллы начислены! ✓';
+  if (btnClaim) {
+    btnClaim.disabled = true;
+    btnClaim.classList.add('success');
+    btnClaim.classList.remove('error');
+  }
 }
 
 /**
  * Состояние: ошибка (можно повторить).
  */
 export function setClaimError() {
-  if (!btnClaim) return;
-  btnClaim.textContent = 'Ошибка. Повторить?';
-  btnClaim.disabled = false;
-  btnClaim.classList.add('error');
-  btnClaim.classList.remove('success');
+  if (btnClaimText) btnClaimText.textContent = 'Ошибка. Повторить?';
+  else if (btnClaim) btnClaim.textContent = 'Ошибка. Повторить?';
+  if (btnClaim) {
+    btnClaim.disabled = false;
+    btnClaim.classList.add('error');
+    btnClaim.classList.remove('success');
+  }
 }
 
 function runClaim(handlers) {

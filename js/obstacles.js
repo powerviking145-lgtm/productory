@@ -74,12 +74,13 @@ export function spawn(distance) {
 }
 
 /**
- * Обновление: сдвиг влево по speed, деактивация за левым краем.
+ * Обновление: сдвиг влево по speed (delta time для одинаковой скорости на 30/60 FPS).
+ * @param {number} dt — множитель, 1 при 60 FPS
  */
-export function update() {
+export function update(dt = 1) {
   pool.forEach((o) => {
     if (!o.active) return;
-    o.x -= speed;
+    o.x -= speed * dt;
     if (o.x + o.width < 0) o.active = false;
   });
 }

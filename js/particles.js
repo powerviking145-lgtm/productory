@@ -50,7 +50,7 @@ export function spawnDeath(x, y, w, h) {
     p.vx = (Math.random() - 0.5) * 14;
     p.vy = (Math.random() - 0.5) * 14 - 4;
     p.life = 0;
-    p.maxLife = 25 + Math.floor(Math.random() * 15);
+    p.maxLife = (25 + Math.floor(Math.random() * 15)) / 60;
     p.size = 3 + Math.floor(Math.random() * 3);
     p.color = colors[Math.floor(Math.random() * colors.length)];
     p.active = true;
@@ -77,7 +77,7 @@ export function spawnBonus(x, y) {
     p.vx = Math.cos(angle) * speed;
     p.vy = Math.sin(angle) * speed - 2;
     p.life = 0;
-    p.maxLife = 20;
+    p.maxLife = 20 / 60;
     p.size = 3;
     p.color = '#FFD700';
     p.active = true;
@@ -86,15 +86,17 @@ export function spawnBonus(x, y) {
 }
 
 /**
- * Обновление частиц.
+ * Обновление частиц (delta time: life в секундах).
+ * @param {number} dt — множитель, 1 при 60 FPS
  */
-export function update() {
+export function update(dt = 1) {
+  const deltaSec = dt / 60;
   pool.forEach((p) => {
     if (!p.active) return;
-    p.x += p.vx;
-    p.y += p.vy;
-    p.vy += 0.3;
-    p.life++;
+    p.x += p.vx * dt;
+    p.y += p.vy * dt;
+    p.vy += 0.3 * dt;
+    p.life += deltaSec;
     if (p.life >= p.maxLife) {
       p.active = false;
       used--;
